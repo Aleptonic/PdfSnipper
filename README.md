@@ -20,6 +20,7 @@ A package to help manage pdf pages, images and their conversions during differen
         pages_to_remove: Number of pages to remove from start 
 -> Usage:
 
+        from PDFSNIPPER import remove_first_pages
         remove_first_pages('/content/input','/content/output',2)
 
 
@@ -36,6 +37,7 @@ A package to help manage pdf pages, images and their conversions during differen
 
 ->Usage:
 
+        from PDFSNIPPER import save_specific_pages
         save_specific_pages('content/input','content/output',[0,2,3])
 
 3. Save pages as images
@@ -52,6 +54,7 @@ A package to help manage pdf pages, images and their conversions during differen
 
 ->Usage:
 
+        from PDFSNIPPER import save_pages_as_images
         save_pages_as_images('content/input','content/output',[0,2,4])
 
 4. Split pdf
@@ -66,6 +69,7 @@ A package to help manage pdf pages, images and their conversions during differen
 
 ->Usage:
 
+        from PDFSNIPPER import split_pdf
         split_pdf('content/input','content/output')
 
 
