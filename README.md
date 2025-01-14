@@ -20,7 +20,7 @@ A package to help manage pdf pages, images and their conversions during differen
         pages_to_remove: Number of pages to remove from start 
 -> Usage:
 
-        remove_first_pages('/content/input','/content/output',[0,2])
+        remove_first_pages('/content/input','/content/output',2)
 
 
 2. Save specific pages
@@ -30,7 +30,13 @@ A package to help manage pdf pages, images and their conversions during differen
            save_specific_pages(input_folder: str, output_folder: str, pages_to_save: list)
 ->Args:
 
+        input_folder: Path to folder containing PDFs
+        output_folder: Path to save modified PDFs
+        pages_to_save: List of page numbers (0-indexed) to save
+
 ->Usage:
+
+        save_specific_pages('content/input','content/output',[0,2,3])
 
 3. Save pages as images
 
