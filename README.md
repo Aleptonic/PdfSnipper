@@ -7,7 +7,7 @@ A package to help manage pdf pages, images and their conversions during differen
         2. Ubuntu/Debian -> sudo apt install poppler-utils
 
 ## Installation
-        pip install -i https://test.pypi.org/simple/ pdf-snip
+        pip install pdf-snip
 ## Features
 1. Remove First N pages
 
