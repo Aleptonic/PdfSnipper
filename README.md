@@ -3,11 +3,18 @@
 A package to help manage pdf pages, images and their conversions during different NLP, CV or other tasks to avoid repetitive code blocks and give a simple function call to make it happen.
 
 ### If you face the error involving `poppler-utlils`
-        1.For Google Colab -> !apt-get install -y poppler-utils
+        1. For Google Colab -> !apt-get install -y poppler-utils
         2. Ubuntu/Debian -> sudo apt install poppler-utils
 
+### If still there is an issue in poppler-utils download the latest release from [here](https://github.com/oschwartz10612/poppler-windows/releases)
+
+- Once installation in `/ProgramFiles` is done you can use `os.environ` to set the PATH environment variable 
+
+        # Set the path to the poppler binaries
+        os.environ['PATH'] += os.pathsep + r'C:\path\to\poppler\bin'
+
 ## Installation
-        pip install pdf-snip
+        pip install -i https://test.pypi.org/simple/ pdf-snip
 ## Features
 1. Remove First N pages
 
