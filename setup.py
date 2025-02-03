@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="pdf_snip",  
-    version="0.0.2",  # Initial version
+    version="0.0.3",  # Initial version
     author="Akshay Gokhale",
     author_email="goakshay07@gmail.com",
     description="A package to help manage pdf pages, images and their conversions during different NLP, CV or other tasks to avoid repetitive code blocks and give a simple function call to make it happen",

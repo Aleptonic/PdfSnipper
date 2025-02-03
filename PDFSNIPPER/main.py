@@ -217,3 +217,113 @@ def split_pdf(input_folder: str, output_folder: str):
         logger.error(f"Error in main execution: {e}")
         raise
 
+# CODE TO REMOVE LAST N PAGES
+def remove_last_pages(input_folder: str, output_folder: str, pages_to_remove: int):
+    """
+    Remove the last N pages from PDFs.
+
+    Args:
+        input_folder (str): Path to folder containing PDFs.
+        output_folder (str): Path to save modified PDFs.
+        pages_to_remove (int): Number of pages to remove from the end.
+    """
+    try:
+        os.makedirs(output_folder, exist_ok=True)
+
+        pdf_files = [f for f in os.listdir(input_folder) if f.lower().endswith('.pdf')]
+        if not pdf_files:
+            logger.warning(f"No PDF files found in {input_folder}")
+            return
+
+        logger.info(f"Found {len(pdf_files)} PDF files to process")
+
+        for pdf_file in pdf_files:
+            input_path = os.path.join(input_folder, pdf_file)
+            output_path = os.path.join(output_folder, pdf_file)
+
+            try:
+                logger.info(f"Processing {pdf_file}")
+
+                reader = PdfReader(input_path)
+                writer = PdfWriter()
+
+                total_pages = len(reader.pages)
+                if total_pages <= pages_to_remove:
+                    logger.warning(
+                        f"Skipping {pdf_file}: Has only {total_pages} pages, cannot remove {pages_to_remove} pages"
+                    )
+                    continue
+
+                for page_num in range(total_pages - pages_to_remove):
+                    writer.add_page(reader.pages[page_num])
+
+                with open(output_path, 'wb') as output_file:
+                    writer.write(output_file)
+
+                logger.info(
+                    f"Successfully processed {pdf_file}: Removed last {pages_to_remove} pages, saved to {output_path}"
+                )
+
+            except Exception as e:
+                logger.error(f"Error processing {pdf_file}: {e}")
+                continue
+
+    except Exception as e:
+        logger.error(f"Error in main execution: {e}")
+        raise
+
+# CODE TO REMOVE PAGES OUTSIDE A RANGE
+def remove_pages_outside_range(input_folder: str, output_folder: str, start_page: int, end_page: int):
+    """
+    Remove pages outside the specified range from PDFs.
+
+    Args:
+        input_folder (str): Path to folder containing PDFs.
+        output_folder (str): Path to save modified PDFs.
+        start_page (int): The first page to keep (0-indexed).
+        end_page (int): The last page to keep (0-indexed).
+    """
+    try:
+        os.makedirs(output_folder, exist_ok=True)
+
+        pdf_files = [f for f in os.listdir(input_folder) if f.lower().endswith('.pdf')]
+        if not pdf_files:
+            logger.warning(f"No PDF files found in {input_folder}")
+            return
+
+        logger.info(f"Found {len(pdf_files)} PDF files to process")
+
+        for pdf_file in pdf_files:
+            input_path = os.path.join(input_folder, pdf_file)
+            output_path = os.path.join(output_folder, pdf_file)
+
+            try:
+                logger.info(f"Processing {pdf_file}")
+
+                reader = PdfReader(input_path)
+                writer = PdfWriter()
+
+                total_pages = len(reader.pages)
+                if start_page >= total_pages or end_page >= total_pages or start_page > end_page:
+                    logger.warning(
+                        f"Skipping {pdf_file}: Invalid page range ({start_page}-{end_page}) for {total_pages} pages"
+                    )
+                    continue
+
+                for page_num in range(start_page, end_page + 1):
+                    writer.add_page(reader.pages[page_num])
+
+                with open(output_path, 'wb') as output_file:
+                    writer.write(output_file)
+
+                logger.info(
+                    f"Successfully processed {pdf_file}: Kept pages {start_page}-{end_page}, saved to {output_path}"
+                )
+
+            except Exception as e:
+                logger.error(f"Error processing {pdf_file}: {e}")
+                continue
+
+    except Exception as e:
+        logger.error(f"Error in main execution: {e}")
+        raise
